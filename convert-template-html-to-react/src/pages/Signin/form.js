@@ -24,7 +24,10 @@ export default function PForm({ form, handleChange, handleSubmit, isLoading }) {
       />
       <PButton
         loading={isLoading}
-        disabled={isLoading}
+        disabled={
+          isLoading ||
+          (form.email === '' || form.password === '' ? true : false)
+        }
         variant='primary'
         action={handleSubmit}
       >
