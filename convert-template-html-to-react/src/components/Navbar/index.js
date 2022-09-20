@@ -21,6 +21,7 @@ export default function NavBar() {
           <Navbar.Brand>Logo</Navbar.Brand>
           <Nav className='justify-content-end'>
             <NavLink action={() => handleNavigate('/menus')}>Menu</NavLink>
+            <NavLink action={() => handleNavigate('/orders')}>Orders</NavLink>
             <Nav.Link onClick={() => handleLogout()}>Logout</Nav.Link>
           </Nav>
         </Container>
