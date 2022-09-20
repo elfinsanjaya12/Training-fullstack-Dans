@@ -1,21 +1,42 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-
-import { MenusRoute } from './menu.route';
+import { Container } from 'react-bootstrap';
 
 import NavBar from '../components/Navbar';
+import Signin from '../pages/Signin';
+import { MenusRoute } from './menu.route';
+import { OrdersRoute } from './order.route';
 
-import { Container } from 'react-bootstrap';
+import {
+  AuthenticatedGuardRoute,
+  NotAuthenticatedGuardRoute,
+} from '../components/Guard';
 
 export function AppRoutes() {
   return (
     <Routes>
+      <Route
+        path='signin'
+        element={
+          <NotAuthenticatedGuardRoute>
+            <Signin />
+          </NotAuthenticatedGuardRoute>
+        }
+      />
       <Route path='/' element={<NavBar />}>
         <Route
           path='menus/*'
           element={
-            <>
+            <AuthenticatedGuardRoute>
               <MenusRoute />
-            </>
+            </AuthenticatedGuardRoute>
+          }
+        />
+        <Route
+          path='orders/*'
+          element={
+            <AuthenticatedGuardRoute>
+              <OrdersRoute />
+            </AuthenticatedGuardRoute>
           }
         />
         <Route
